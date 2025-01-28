@@ -5,7 +5,15 @@ export default function Masterplan() {
   return (
     <Box 
     id='masterplan'
-    sx={{ flexGrow: 1, p: 4, textAlign: 'center', backgroundColor: '#f4f4f4' }}>
+    sx={{ 
+      marginX:'20%',
+      textAlign: 'center', 
+      py: 5,
+       height:'100vh',
+       display:'block',
+       alignContent:'center',
+       justifyContent:'center'
+       }}>
       <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold' }}>
         Masterplan
       </Typography>

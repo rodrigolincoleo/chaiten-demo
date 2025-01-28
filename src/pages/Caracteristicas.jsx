@@ -12,43 +12,51 @@ const features = [
 
 export default function Carasteristicas() {
     return (
-        <>
+
+        <Box
+            id="caracteristicas"
+            sx={{
+                display:'block',
+                alignContent:'center',
+                height: '100vh',
+                position: 'relative',
+                flexGrow: 1,
+                backgroundImage: `url(https://ik.imagekit.io/k244xcphl/assets/images/Fotos%20Chait%C3%A9n/4.jpg?updatedAt=1737735966234)`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                '::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                    zIndex: 1,
+                },
+            }}
+
+        >
             <Box
-                id="caracteristicas"
                 sx={{
-                    position: 'relative',
-                    flexGrow: 1,
-                    p: 3,
-                    backgroundImage: `url(https://ik.imagekit.io/k244xcphl/assets/images/Fotos%20Chait%C3%A9n/4.jpg?updatedAt=1737735966234)`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                    '::before': {
-                        content: '""',
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        backgroundColor: 'rgba(0, 0, 0, 0.6)',  
-                        zIndex: 1,  
-                    },
-                }}
-            >
-                
-                <Typography variant="h4" align="center" gutterBottom sx={{ color:'white', margin: 4 ,position:"relative",
-                                    zIndex: 2,}}>
+
+                    marginX: '30%',
+                    display: 'block',
+                    alignSelf: 'center'
+
+                }}>
+                <Typography variant="h4" align="center" gutterBottom sx={{
+                    color: 'white', margin: 4, position: "relative",
+                    zIndex: 2,
+                }}>
                     Características
                 </Typography>
-                <Grid container spacing={2}  
-                    sx={{
-                        width: '50%',
-                        height: '30%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifySelf: 'center',
-                      }}
-                    >
+
+
+                <Grid container spacing={2}
+
+                >
                     {features.map((feature, index) => (
                         <Grid item xs={12} sm={6} key={index}>
                             <Card
@@ -58,14 +66,14 @@ export default function Carasteristicas() {
                                     flexDirection: 'column',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    borderRadius: 2,   
+                                    borderRadius: 2,
                                     textAlign: 'center',
                                     p: 2,
-                                    position:"relative",
-                                    zIndex: 2, 
-                                    backgroundColor:"transparent",
-                                    boxShadow:"none", 
-                                    
+                                    position: "relative",
+                                    zIndex: 2,
+                                    backgroundColor: "transparent",
+                                    boxShadow: "none",
+
                                 }}
                             >
                                 <CardMedia
@@ -78,47 +86,47 @@ export default function Carasteristicas() {
                                         objectFit: 'contain',
                                         mb: 1,
                                         filter: 'invert(100%) brightness(100%)',
-                                      }}
-                                />
-                               <Typography variant="h6" sx={{ color: 'white' }}>
-                                {feature.text}
-                            </Typography>
-
-                            {/* Línea separadora vertical (se coloca solo en las dos primeras tarjetas) */}
-                            {(index === 0 || index === 2) && (
-                                <Divider
-                                    orientation="vertical"
-                                    sx={{
-                                        position: 'absolute',
-                                        right: 0,
-                                        top: '10%',
-                                        height: '80%',
-                                        backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                                        width: '2px',
                                     }}
                                 />
-                            )}
+                                <Typography variant="h6" sx={{ color: 'white' }}>
+                                    {feature.text}
+                                </Typography>
 
-                            {/* Línea separadora horizontal (se coloca solo en las dos primeras tarjetas) */}
-                            {index < 2 && (
-                                <Divider
-                                    sx={{
-                                        position: 'absolute',
-                                        bottom: 0,
-                                        left: '10%',
-                                        width: '80%',
-                                        backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                                        height: '2px',
-                                    }}
-                                />
-                            )}
+                                {/* Línea separadora vertical (se coloca solo en las dos primeras tarjetas) */}
+                                {(index === 0 || index === 2) && (
+                                    <Divider
+                                        orientation="vertical"
+                                        sx={{
+                                            position: 'absolute',
+                                            right: 0,
+                                            top: '10%',
+                                            height: '80%',
+                                            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                                            width: '2px',
+                                        }}
+                                    />
+                                )}
+
+                                {/* Línea separadora horizontal (se coloca solo en las dos primeras tarjetas) */}
+                                {index < 2 && (
+                                    <Divider
+                                        sx={{
+                                            position: 'absolute',
+                                            bottom: 0,
+                                            left: '10%',
+                                            width: '80%',
+                                            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                                            height: '2px',
+                                        }}
+                                    />
+                                )}
                             </Card>
                         </Grid>
                     ))}
-                    
+
                 </Grid>
-                
             </Box>
-        </>
+        </Box>
+
     );
 }

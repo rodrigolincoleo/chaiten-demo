@@ -15,24 +15,19 @@ export default function Ubicacion() {
     return (
         <Box
             id="ubicacion"
-            sx={{ flexGrow: 1, p: 4 }}>
-            <Grid container spacing={2} alignItems="center" justifyContent={'center'} >
+            sx={{ 
+                p: 4, 
+                display:'block',
+                alignItems:"center",
+                justifyContent:'center',
+
+            }}>
+            <Grid container spacing={2}   >
 
                 {/* Primera columna - Mapa de Google */}
                 <Grid item xs={12} md={4}>
                     <LoadScript googleMapsApiKey={GOOGLE_MAPS_API_KEY}>
-                        <GoogleMap
-                            mapContainerStyle={{
-                                width: '100%',
-                                height: '400px',
-                                borderRadius: '8px',
-                                boxShadow: '0px 4px 10px rgba(0,0,0,0.2)',
-                            }}
-                            center={mapCenter}
-                            zoom={10}
-                        >
-                            <Marker position={mapCenter} />
-                        </GoogleMap>
+             
                     </LoadScript>
                 </Grid>
 

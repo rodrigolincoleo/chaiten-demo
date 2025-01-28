@@ -57,7 +57,6 @@ export default function Home() {
       <PhotoGallery />
       <VideoSection />
       <Ubicacion />
-      <Links />
       <Contact />
 
       {/* Botón flotante para volver arriba */}

@@ -18,6 +18,7 @@ const theme = createTheme({
     h1: { fontSize: '2rem', fontWeight: 700 },
     body1: { fontSize: '1rem' },
   },
+  
 });
 
 ReactDOM.createRoot(document.getElementById('root')).render(

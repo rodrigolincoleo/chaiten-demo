@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "chaiten-demo"
-  }
+    "default": "chaiten-demo",
+    "chaiten": "chaiten-demo"
+  },
+  "targets": {},
+  "etags": {}
 }

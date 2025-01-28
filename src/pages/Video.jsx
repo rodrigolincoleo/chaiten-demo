@@ -14,7 +14,14 @@ useEffect(() => {
 }, []);
 
   return (
-    <Box id='video' sx={{ textAlign: 'center', py: 5, backgroundColor: '#f4f4f4' }}>
+    <Box id='video' 
+    sx={{ 
+      textAlign: 'center', 
+      py: 5,
+       height:'100vh',
+       display:'flex',
+       alignItems:'center'
+       }}>
       <Container maxWidth="md">
         <Typography variant="h4" gutterBottom>
          Video
