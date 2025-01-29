@@ -22,12 +22,11 @@ export default function Masterplan() {
         src="https://www.lanube360.com/temporales/patagonia-verde7/"
         title="Masterplan Interactivo"
         sx={{
-          width: '100%',
-          maxWidth: '1000px',
-          height: '600px',
           border: 'none',
           borderRadius: '8px',
           boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',
+          width:'100%',
+          height:'100%'
         }}
       />
     </Box>

@@ -59,6 +59,9 @@ function Navbar({ navBg }) {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         transition: 'background 0.3s ease-in-out',
+        display: 'flex', 
+        justifyItems: 'center',
+        alignItems: 'center'
       }}
     >
       <Toolbar sx={{ marginX: '30%', display: 'flex', justifyItems: 'center', }}>
