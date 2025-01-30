@@ -1,22 +1,24 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React from 'react';
 
 export default function HeroSection({ setNavbarBg }) {
-
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     // Configuración del carrusel
     const settings = {
-        dots: true,               // Muestra indicadores
-        infinite: true,           // Desplazamiento infinito
-        speed: 1000,              // Velocidad de transición
-        slidesToShow: 1,          // Mostrar una imagen a la vez
-        slidesToScroll: 1,        // Desplazar una imagen a la vez
-        autoplay: true,           // Reproducción automática
-        autoplaySpeed: 5000,      // Tiempo entre transiciones
-        arrows: true,             // Flechas de navegación
+        dots: true,
+        infinite: true,
+        speed: 1000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        arrows: true,
         beforeChange: (oldIndex, newIndex) => {
             setNavbarBg(slides[newIndex].image);
         }
@@ -32,26 +34,13 @@ export default function HeroSection({ setNavbarBg }) {
         {
             image: 'https://ik.imagekit.io/k244xcphl/assets/images/Fotos%20Chait%C3%A9n/7.jpg?updatedAt=1737735002161',
             title: "Naturaleza en su estado más puro",
-            text: "La Patagonia Verde debe su nombre a la abundancia de bosques nativos que cubren sus colinas y valles. Estos bosques, formados por especies como el alerce, el coigüe y el arrayán, crean un mosaico de tonos verdes que acompaña a los ríos y lagos cristalinos que serpentean por la región. Es un lugar donde la biodiversidad florece y donde cada rincón guarda un secreto por descubrir."
+            text: "La Patagonia Verde debe su nombre a la abundancia de bosques nativos que cubren sus colinas y valles..."
         },
         {
             image: 'https://ik.imagekit.io/k244xcphl/assets/images/Fotos%20Chait%C3%A9n/4.jpg?updatedAt=1737735966234',
             title: "Ríos, lagos y costas de ensueño",
-            text: "El agua es protagonista en la Patagonia Verde. Ríos caudalosos como el Yelcho y lagos de aguas tranquilas como el Lago Blanco invitan a actividades como la pesca, el kayak y el simple deleite de contemplar su serenidad. Además, las costas de la región ofrecen vistas espectaculares del océano Pacífico, donde playas poco exploradas y acantilados imponentes completan el paisaje."
-        },
-        {
-            image: 'https://ik.imagekit.io/k244xcphl/assets/images/Fotos%20Chait%C3%A9n/12.jpg?updatedAt=1737734993378',
-            title: "Vida rural y tradiciones",
-            text: "La vida en la Patagonia Verde conserva una fuerte conexión con sus tradiciones rurales. Las pequeñas localidades de la zona son conocidas por su hospitalidad y calidez. Aquí, los visitantes pueden disfrutar de productos locales como quesos, mermeladas y platos típicos preparados con ingredientes frescos de la región."
-        },{
-            image: 'https://ik.imagekit.io/k244xcphl/assets/images/Fotos%20Chait%C3%A9n/14.jpg?updatedAt=1737734993189',
-            title: "Senderos y aventura",
-            text: "La región también es un destino ideal para los amantes del trekking y la exploración. Senderos que atraviesan bosques y conducen a miradores naturales ofrecen vistas impresionantes de la Patagonia Verde. Cada paso en estos caminos revela una nueva perspectiva de este entorno prístino y vibrante."
-        },{
-            image: 'https://ik.imagekit.io/k244xcphl/assets/images/Fotos%20Chait%C3%A9n/21.jpg?updatedAt=1737734992991',
-            title: "Un destino para desconectarse y reconectar",
-            text: "La Patagonia Verde cerca de Chaitén es mucho más que un lugar de visita: es una experiencia que invita a desconectarse del ritmo acelerado de la vida moderna y a reconectar con la naturaleza. Ya sea que busques aventura o tranquilidad, este rincón del mundo tiene algo especial para ofrecer."
-        },
+            text: "El agua es protagonista en la Patagonia Verde. Ríos caudalosos como el Yelcho y lagos de aguas tranquilas como el Lago Blanco..."
+        }
     ];
 
     return (
@@ -74,23 +63,32 @@ export default function HeroSection({ setNavbarBg }) {
                         key={index}
                         sx={{
                             height: '90vh',
-                            backgroundColor: 'rgba(0, 0, 0, 0.6)',  
+                            backgroundColor: 'rgba(0, 0, 0, 0.6)',
                             backgroundImage: `url(${slide.image})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
-                            backgroundAttachment: 'fixed',
+                            backgroundAttachment: isMobile ? 'scroll' : 'fixed',
                             display: 'flex',
-                            alignContent: 'center',
+                            alignItems: 'center',
+                            justifyContent: 'center',
                         }}
                     >
-                        <Box sx={{
-                            p: 4, borderRadius: 2,
-                            maxWidth: '600px',
-                            display: 'block',
-                            justifySelf: 'center',
-                        }}>
-                            <Typography variant="h3" sx={{ fontWeight: 'bold', mb: 2 }}>{slide.title}</Typography>
-                            <Typography variant="h6" sx={{ whiteSpace: 'pre-line' }}>{slide.text}</Typography>
+                        <Box
+                            sx={{
+                                p: 4,
+                                borderRadius: 2,
+                                maxWidth: isMobile ? '90%' : '600px',
+                                textAlign: 'center',
+                                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                                borderRadius: '8px',
+                            }}
+                        >
+                            <Typography variant={isMobile ? 'h4' : 'h3'} sx={{ fontWeight: 'bold', mb: 2 }}>
+                                {slide.title}
+                            </Typography>
+                            <Typography variant="h6" sx={{ whiteSpace: 'pre-line' }}>
+                                {slide.text}
+                            </Typography>
                         </Box>
                     </Box>
                 ))}
