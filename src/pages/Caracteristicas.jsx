@@ -1,26 +1,28 @@
-import { Grid, Card, CardMedia, Typography, Box, Divider } from '@mui/material';
-
+import { Grid, Card, CardMedia, Typography, Box, Divider, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import React from 'react';
-
 
 const features = [
     { icon: 'https://ik.imagekit.io/k244xcphl/assets/icons/proteccion.png?updatedAt=1737734982065', text: 'Acceso controlado - cámaras de seguridad' },
     { icon: 'https://ik.imagekit.io/k244xcphl/assets/icons/lloviendo.png?updatedAt=1737734981689', text: 'Emplazada en una zona de fuentes hídricas de alta pureza' },
-    { icon: 'https://ik.imagekit.io/k244xcphl/assets/icons/parque.png?updatedAt=1737734981907', text: 'Disfruta de bosques, ríos, flora y fauna caracteristicas del sur de Chile.' },
+    { icon: 'https://ik.imagekit.io/k244xcphl/assets/icons/parque.png?updatedAt=1737734981907', text: 'Disfruta de bosques, ríos, flora y fauna características del sur de Chile.' },
     { icon: 'https://ik.imagekit.io/k244xcphl/assets/icons/velero.png?updatedAt=1737734984114', text: 'Conectividad con senderos de trekking, miradores de avistamiento de aves, playas y puertos de la zona.' },
 ];
 
-export default function Carasteristicas() {
-    return (
+export default function Caracteristicas() {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+    return (
         <Box
             id="caracteristicas"
             sx={{
-                display:'block',
-                alignContent:'center',
-                height: '100vh',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minHeight: '100vh',
                 position: 'relative',
-                flexGrow: 1,
                 backgroundImage: `url(https://ik.imagekit.io/k244xcphl/assets/images/Fotos%20Chait%C3%A9n/4.jpg?updatedAt=1737735966234)`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
@@ -36,27 +38,21 @@ export default function Carasteristicas() {
                     zIndex: 1,
                 },
             }}
-
         >
             <Box
                 sx={{
-
-                    marginX: '30%',
-                    display: 'block',
-                    alignSelf: 'center'
-
-                }}>
-                <Typography variant="h4" align="center" gutterBottom sx={{
-                    color: 'white', margin: 4, position: "relative",
+                    maxWidth: isMobile ? '90%' : '60%',
+                    textAlign: 'center',
+                    position: 'relative',
                     zIndex: 2,
-                }}>
+                    py: 4,
+                }}
+            >
+                <Typography variant="h4" align="center" gutterBottom sx={{ color: 'white', mb: 3 }}>
                     Características
                 </Typography>
 
-
-                <Grid container spacing={2}
-
-                >
+                <Grid container spacing={2}>
                     {features.map((feature, index) => (
                         <Grid item xs={12} sm={6} key={index}>
                             <Card
@@ -69,11 +65,9 @@ export default function Carasteristicas() {
                                     borderRadius: 2,
                                     textAlign: 'center',
                                     p: 2,
-                                    position: "relative",
-                                    zIndex: 2,
-                                    backgroundColor: "transparent",
-                                    boxShadow: "none",
-
+                                    position: 'relative',
+                                    backgroundColor: 'transparent',
+                                    boxShadow: 'none',
                                 }}
                             >
                                 <CardMedia
@@ -92,8 +86,8 @@ export default function Carasteristicas() {
                                     {feature.text}
                                 </Typography>
 
-                                {/* Línea separadora vertical (se coloca solo en las dos primeras tarjetas) */}
-                                {(index === 0 || index === 2) && (
+                                {/* Líneas separadoras visibles solo en pantallas grandes */}
+                                {!isMobile && (index === 0 || index === 2) && (
                                     <Divider
                                         orientation="vertical"
                                         sx={{
@@ -106,9 +100,7 @@ export default function Carasteristicas() {
                                         }}
                                     />
                                 )}
-
-                                {/* Línea separadora horizontal (se coloca solo en las dos primeras tarjetas) */}
-                                {index < 2 && (
+                                {!isMobile && index < 2 && (
                                     <Divider
                                         sx={{
                                             position: 'absolute',
@@ -123,10 +115,8 @@ export default function Carasteristicas() {
                             </Card>
                         </Grid>
                     ))}
-
                 </Grid>
             </Box>
         </Box>
-
     );
 }

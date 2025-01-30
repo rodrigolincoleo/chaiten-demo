@@ -1,9 +1,15 @@
-import { AppBar, Toolbar, Typography, Button, FormControl, Select, MenuItem, Box } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, FormControl, Select, MenuItem, Box, IconButton, Drawer, List, ListItem, ListItemButton } from '@mui/material';
+import { Menu as MenuIcon } from '@mui/icons-material';
 import { Link } from 'react-scroll';
 import React, { useState, useEffect } from 'react';
+import { useTheme, useMediaQuery } from '@mui/material';
 
 function Navbar({ navBg }) {
   const [aNavBg, setANavBg] = useState();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   useEffect(() => {
     const handleScroll = () => {
       requestAnimationFrame(() => {
@@ -19,117 +25,98 @@ function Navbar({ navBg }) {
     smooth: true,
     duration: 1000,
     sx: {
-      fontSize: '1rem',  // Tamaño de letra del botón
+      fontSize: '1rem',
       fontWeight: 'bold',
-      textTransform: 'none',  // Para evitar mayúsculas automáticas
-      mx: 1,  // Margen horizontal para espaciar botones
-      color: (theme) => (aNavBg === 'white' ? 'black' : 'white'),
+      textTransform: 'none',
+      mx: 1,
+      color: aNavBg === 'white' ? 'black' : 'white',
     },
   };
-  const buttonProps2 = {
-    component: Link,
-    smooth: true,
-    duration: 1000,
-    sx: {
-      fontSize: '1rem',  // Tamaño de letra del botón
-      fontWeight: 'bold',
-      textTransform: 'none',  // Para evitar mayúsculas automáticas
-      mx: 1,  // Margen horizontal para espaciar botones
-      color: (theme) => (aNavBg === 'white' ? 'black' : 'white'),
-    },
-  };
+
   const menuItemStyles = {
-    backgroundColor: 'transparent',  // Fondo transparente por defecto
-    '&:hover': {
-      backgroundColor: 'rgba(128, 128, 128, 0.3)',  // Gris transparente al pasar el mouse
-    },
-    '&:focus': {
-      backgroundColor: 'rgba(128, 128, 128, 0.3)',  // Gris transparente cuando está en foco
-    },
-    '&.Mui-selected': {
-      backgroundColor: 'rgba(128, 128, 128, 0.3) !important',  // Gris transparente si está seleccionado
-    },
+    backgroundColor: 'transparent',
+    '&:hover': { backgroundColor: 'rgba(128, 128, 128, 0.3)' },
+    '&:focus': { backgroundColor: 'rgba(128, 128, 128, 0.3)' },
+    '&.Mui-selected': { backgroundColor: 'rgba(128, 128, 128, 0.3) !important' },
   };
+
   return (
     <AppBar
       position="fixed"
       elevation={0}
       sx={{
-        background: `url(${navBg})`,
+        background: aNavBg,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         transition: 'background 0.3s ease-in-out',
-        display: 'flex', 
-        justifyItems: 'center',
-        alignItems: 'center'
       }}
     >
-      <Toolbar sx={{ marginX: '30%', display: 'flex', justifyItems: 'center', }}>
-        <Box sx={{ display: 'flex', justifyItems: 'center', alignItems: 'center'}}>
+      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        {/* Logo y Título */}
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box
             component="img"
             src="https://ik.imagekit.io/k244xcphl/assets/Logo%20Patagonia%20verde.png?updatedAt=1737999642871"
             alt="Logo Patagonia Verde"
-            sx={{
-              width: 40,  // Ajusta el tamaño del logo según sea necesario
-              height: 40,
-              marginRight: 1,  // Espacio entre el logo y el texto
-            }}
+            sx={{ width: 40, height: 40, mr: 1 }}
           />
-
-          <Typography variant="h6"
+          <Typography
+            variant="h6"
             sx={{
-              flexGrow: 1,
-              color: (theme) => (aNavBg === 'white' ? 'black' : 'white'),
-              fontSize: '1rem',  // Ajusta el tamaño de la fuente
-              fontWeight: 'bold',  // Ajusta el grosor de la fuente
-              letterSpacing: '0.1rem', // Ajusta el espaciado entre letras
-            }}>
+              color: aNavBg === 'white' ? 'black' : 'white',
+              fontSize: '1rem',
+              fontWeight: 'bold',
+              letterSpacing: '0.1rem',
+            }}
+          >
             Patagonia Verde
           </Typography>
         </Box>
-        <Box sx={{ display: 'flex', justifyItems: 'center' }}>
-          <FormControl variant="standard" sx={{ minWidth: 150, mr: 2 }}>
-            <Select
-              displayEmpty
-              sx={{
-                backgroundColor: 'transparent', // Fondo inicial transparente
-                transition: 'background-color 0.3s ease-in-out', // Transición suave
 
-                // Elimina la línea inferior predeterminada en todas las interacciones
-                '&::before': { borderBottom: 'none !important' },
-                '&::after': { borderBottom: 'none !important' },
-                '&:hover::before': { borderBottom: 'none !important' },
-                '&:focus::before': { borderBottom: 'none !important' },
-
-                // Aplica fondo gris claro al pasar el mouse o al estar enfocado
-                '&:hover': { backgroundColor: 'rgba(128, 128, 128, 0.2)' }, // Gris con transparencia en hover
-                '&:focus': { backgroundColor: 'rgba(128, 128, 128, 0.3)' }, // Gris más oscuro en focus
-
-                // Estiliza el icono del desplegable basado en el fondo
-                '& .MuiSelect-icon': {
-                  color: navBg === 'white' ? 'black' : 'white',
-                },
-              }}
+        {/* Menú Desktop / Mobile */}
+        {isMobile ? (
+          <>
+            <IconButton
+              edge="end"
+              color="inherit"
+              aria-label="menu"
+              onClick={() => setMobileOpen(true)}
             >
+              <MenuIcon sx={{ color: aNavBg === 'white' ? 'black' : 'white' }} />
+            </IconButton>
 
-              <MenuItem sx={menuItemStyles}><Button {...buttonProps2} to="caracteristicas">Características</Button></MenuItem>
-              <MenuItem sx={menuItemStyles}><Button {...buttonProps2} to="flora">Flora y fauna</Button></MenuItem>
-              <MenuItem sx={menuItemStyles}><Button {...buttonProps2} to="actividades">Actividades</Button></MenuItem>
-              <MenuItem sx={menuItemStyles}><Button {...buttonProps2} to="about" >El Proyecto</Button></MenuItem>
-
-            </Select>
-          </FormControl>
-          <Button color="inherit" {...buttonProps} to="masterplan" {...buttonProps} >Masterplan</Button>
-          <Button color="inherit" {...buttonProps} to="fotos"  {...buttonProps} >Fotos</Button>
-          <Button color="inherit" {...buttonProps} to="video" >Videos</Button>
-          <Button color="inherit" {...buttonProps} to="ubicacion" >Ubicación</Button>
-          <Button color="inherit" {...buttonProps} to="contact" >Contacto</Button>
-        </Box>
+            {/* Drawer para móviles */}
+            <Drawer anchor="right" open={mobileOpen} onClose={() => setMobileOpen(false)}>
+              <List>
+                {['caracteristicas', 'flora', 'actividades', 'about', 'masterplan', 'fotos', 'video', 'ubicacion', 'contact'].map((section) => (
+                  <ListItem key={section} disablePadding>
+                    <ListItemButton component={Link} to={section} smooth duration={1000} onClick={() => setMobileOpen(false)}>
+                      {section.charAt(0).toUpperCase() + section.slice(1)}
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+              </List>
+            </Drawer>
+          </>
+        ) : (
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <FormControl variant="standard" sx={{ minWidth: 150, mr: 2 }}>
+              <Select displayEmpty sx={{ backgroundColor: 'transparent' }}>
+                <MenuItem sx={menuItemStyles}><Button {...buttonProps} to="caracteristicas">Características</Button></MenuItem>
+                <MenuItem sx={menuItemStyles}><Button {...buttonProps} to="flora">Flora y fauna</Button></MenuItem>
+                <MenuItem sx={menuItemStyles}><Button {...buttonProps} to="actividades">Actividades</Button></MenuItem>
+                <MenuItem sx={menuItemStyles}><Button {...buttonProps} to="about">El Proyecto</Button></MenuItem>
+              </Select>
+            </FormControl>
+            <Button {...buttonProps} to="masterplan">Masterplan</Button>
+            <Button {...buttonProps} to="fotos">Fotos</Button>
+            <Button {...buttonProps} to="video">Videos</Button>
+            <Button {...buttonProps} to="ubicacion">Ubicación</Button>
+            <Button {...buttonProps} to="contact">Contacto</Button>
+          </Box>
+        )}
       </Toolbar>
     </AppBar>
-
-
   );
 }
 
