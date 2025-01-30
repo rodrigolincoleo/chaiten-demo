@@ -21,6 +21,7 @@ export default function IconGrid() {
 
   return (
     <Box
+    id="actividades"
       sx={{
         minHeight: '100vh',
         background: '#f4f4f4',

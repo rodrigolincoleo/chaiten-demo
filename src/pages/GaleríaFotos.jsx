@@ -19,7 +19,7 @@ const ImageGrid = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Box sx={{ background: "#f4f4f4", py: 5, display: "flex", justifyContent: "center" }}>
+    <Box id="fotos" sx={{ background: "#f4f4f4", py: 5, display: "flex", justifyContent: "center" }}>
       <Box sx={{ maxWidth: isMobile ? "90%" : "60%" }}>
         <Grid container spacing={2} justifyContent="center">
           {images.map((image, index) => (

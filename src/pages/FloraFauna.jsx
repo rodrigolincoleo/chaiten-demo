@@ -8,6 +8,7 @@ const TwoColumnLayout = () => {
 
   return (
     <Box
+      id='flora'
       sx={{
         marginY: "5%",
         marginX: isMobile ? "5%" : "20%", // Márgenes reducidos en móviles
