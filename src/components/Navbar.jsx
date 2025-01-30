@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { useTheme, useMediaQuery } from '@mui/material';
 
 function Navbar({ navBg }) {
-  const [aNavBg, setANavBg] = useState();
+  const [aNavBg, setANavBg] = useState('transparent'); // Inicializa con 'transparent'
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -13,9 +13,13 @@ function Navbar({ navBg }) {
   useEffect(() => {
     const handleScroll = () => {
       requestAnimationFrame(() => {
-        setANavBg(window.scrollY > window.innerHeight * 0.9 ? 'white' : `url(${navBg})`);
+        setANavBg(window.scrollY > window.innerHeight * 0.9 ? 'white' : 'transparent');
       });
     };
+
+    // Ejecutar el efecto una vez al cargar la página para corregir el fondo
+    handleScroll();
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -46,9 +50,8 @@ function Navbar({ navBg }) {
       elevation={0}
       sx={{
         background: aNavBg,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
         transition: 'background 0.3s ease-in-out',
+        boxShadow: 'none',
       }}
     >
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -101,7 +104,17 @@ function Navbar({ navBg }) {
         ) : (
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <FormControl variant="standard" sx={{ minWidth: 150, mr: 2 }}>
-              <Select displayEmpty sx={{ backgroundColor: 'transparent' }}>
+              <Select
+                displayEmpty
+                sx={{
+                  backgroundColor: 'transparent',
+                  borderBottom: 'none', // Elimina la línea inferior
+                  '&:hover': { backgroundColor: 'transparent' },
+                  '&.Mui-focused': { borderBottom: 'none' },
+                  '&::before': { borderBottom: 'none' },
+                  '&::after': { borderBottom: 'none' },
+                }}
+              >
                 <MenuItem sx={menuItemStyles}><Button {...buttonProps} to="caracteristicas">Características</Button></MenuItem>
                 <MenuItem sx={menuItemStyles}><Button {...buttonProps} to="flora">Flora y fauna</Button></MenuItem>
                 <MenuItem sx={menuItemStyles}><Button {...buttonProps} to="actividades">Actividades</Button></MenuItem>

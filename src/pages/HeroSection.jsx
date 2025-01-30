@@ -62,31 +62,42 @@ export default function HeroSection({ setNavbarBg }) {
                     <Box
                         key={index}
                         sx={{
-                            height: '90vh',
+                            height: '100vh',
                             backgroundColor: 'rgba(0, 0, 0, 0.6)',
                             backgroundImage: `url(${slide.image})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
                             backgroundAttachment: isMobile ? 'scroll' : 'fixed',
                             display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
+                            alignContent: 'center',
+                            justifyItems: 'center',
                         }}
                     >
                         <Box
                             sx={{
-                                p: 4,
+                                width: '100%',
+                                height: '100vh',
                                 borderRadius: 2,
-                                maxWidth: isMobile ? '90%' : '600px',
                                 textAlign: 'center',
                                 backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                                borderRadius: '8px',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignContent: 'center',
+                                justifyContent: 'center',
                             }}
                         >
-                            <Typography variant={isMobile ? 'h4' : 'h3'} sx={{ fontWeight: 'bold', mb: 2 }}>
+                            <Typography
+                                
+                                sx={{ fontWeight: 'bold', mb: 2 }}
+                            >
                                 {slide.title}
                             </Typography>
-                            <Typography variant="h6" sx={{ whiteSpace: 'pre-line' }}>
+                            <Typography
+                                variant="h6"
+                                sx={{ whiteSpace: 'pre-line', 
+                                    textAlign: 'center' ,
+                                }}
+                            >
                                 {slide.text}
                             </Typography>
                         </Box>
