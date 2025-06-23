@@ -26,7 +26,7 @@ export default function Masterplan() {
 
       <Box
         component="iframe"
-        src="https://www.lanube360.com/temporales/patagonia-verde7/"
+        src="https://www.lanube360.com/patagonia-verde/"
         title="Masterplan Interactivo"
         sx={{
           border: 'none',

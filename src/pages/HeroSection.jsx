@@ -84,18 +84,28 @@ export default function HeroSection({ setNavbarBg }) {
                                 flexDirection: 'column',
                                 alignContent: 'center',
                                 justifyContent: 'center',
+                                alignItems: 'center', // Centra el contenido horizontalmente
                             }}
                         >
                             <Typography
-                                
-                                sx={{ fontWeight: 'bold', mb: 2 }}
+                                sx={{
+                                    fontWeight: 'bold',
+                                    mb: 2,
+                                    maxWidth: { xs: '90%', sm: 500 }, // Limita el ancho del texto
+                                    mx: 'auto',
+                                    fontSize: { xs: '1.3rem', sm: '2rem' },
+                                }}
                             >
                                 {slide.title}
                             </Typography>
                             <Typography
                                 variant="h6"
-                                sx={{ whiteSpace: 'pre-line', 
-                                    textAlign: 'center' ,
+                                sx={{
+                                    whiteSpace: 'pre-line',
+                                    textAlign: 'center',
+                                    maxWidth: { xs: '90%', sm: 500 }, // Limita el ancho del texto
+                                    mx: 'auto',
+                                    fontSize: { xs: '1rem', sm: '1.15rem' },
                                 }}
                             >
                                 {slide.text}

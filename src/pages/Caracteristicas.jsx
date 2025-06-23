@@ -4,8 +4,8 @@ import React from 'react';
 
 const features = [
     { icon: 'https://ik.imagekit.io/k244xcphl/assets/icons/proteccion.png?updatedAt=1737734982065', text: 'Acceso controlado - cámaras de seguridad' },
-    { icon: 'https://ik.imagekit.io/k244xcphl/assets/icons/lloviendo.png?updatedAt=1737734981689', text: 'Emplazada en una zona de fuentes hídricas de alta pureza' },
-    { icon: 'https://ik.imagekit.io/k244xcphl/assets/icons/parque.png?updatedAt=1737734981907', text: 'Disfruta de bosques, ríos, flora y fauna características del sur de Chile.' },
+    { icon: 'https://ik.imagekit.io/k244xcphl/assets/icons/lloviendo.png?updatedAt=1737734981689', text: 'Emplazada en una zona de fuentes hídricas de alta pureza, entrada al parque nacional Pumalin' },
+    { icon: 'https://ik.imagekit.io/k244xcphl/assets/icons/parque.png?updatedAt=1737734981907', text: 'Disfruta de bosques, aguas termales,  ríos, flora y fauna características del sur de Chile.' },
     { icon: 'https://ik.imagekit.io/k244xcphl/assets/icons/velero.png?updatedAt=1737734984114', text: 'Conectividad con senderos de trekking, miradores de avistamiento de aves, playas y puertos de la zona.' },
 ];
 

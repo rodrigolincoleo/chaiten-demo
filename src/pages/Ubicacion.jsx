@@ -1,6 +1,5 @@
 import { Grid, Typography, Box, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import React from 'react';
 
 // Coordenadas de ubicación
@@ -34,52 +33,56 @@ export default function Ubicacion() {
       <Grid container spacing={4} alignItems="center" justifyContent="center">
         {/* Columna del mapa */}
         <Grid item xs={12} md={6} sx={{ display: 'flex', justifyContent: 'center' }}>
-          <LoadScript googleMapsApiKey={GOOGLE_MAPS_API_KEY}>
-            <GoogleMap
-              mapContainerStyle={{
-                width: isMobile ? '100%' : '500px',
-                height: isMobile ? '300px' : '400px',
-                borderRadius: '8px',
-              }}
-              center={mapCenter}
-              zoom={12}
-            >
-              <Marker position={mapCenter} />
-            </GoogleMap>
-          </LoadScript>
+          <Box
+            sx={{
+              width: isMobile ? '100%' : '500px',
+              height: isMobile ? '300px' : '400px',
+              borderRadius: '8px',
+              overflow: 'hidden',
+              boxShadow: 2,
+            }}
+          >
+           <iframe src="https://www.google.com/maps/d/u/0/embed?mid=15dJMLdu5FCGgKBccNXb_1RAbNAEc4fM&ehbc=2E312F&noprof=1" width="640" height="480"></iframe>
+          </Box>
         </Grid>
 
         {/* Columna del texto */}
-        <Grid item xs={12} md={6} container direction="column" alignItems="center" justifyContent="center">
+        <Grid
+          item
+          xs={12}
+          md={6}
+          container
+          direction="column"
+          alignItems="flex-start"
+          justifyContent="center"
+        >
           {/* Información al Norte */}
-          <Box sx={{ maxWidth: isMobile ? '90%' : '400px' }}>
-            <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
+          <Box sx={{ maxWidth: isMobile ? '100%' : '400px', mb: 4 }}>
+            <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', textAlign: 'left' }}>
               Al Norte
             </Typography>
             <Typography variant="body1" sx={{ textAlign: 'justify', color: '#333' }}>
-              Puerto Montt 65 km, 60 min.<br />
-              Contao 25 km, 25 min<br />
-              Playas de Rolecha, Chauchil y Lleguimán, 15 km, 20 min<br />
-              Las cuevas de Poe en el sector de Lleguimán, 5 km, 8 min<br />
-              Iglesia San Nicolás de Tolentino, una construcción de alerce que data del año 1890, 20 min.
+              Ciudad de Chaitén 10 km<br />
+              Santa Bárbara 12 km<br />
+              Caleta Gonzalo 56 km<br />
+              Playas Santa Bárbara y Morro Vilcún 12 km<br />
+              Parque Nacional Pumalín Sendero de Los Alerces 43 km<br />
             </Typography>
           </Box>
 
           {/* Información al Sur */}
-          <Box sx={{ maxWidth: isMobile ? '90%' : '400px', mt: 4 }}>
-            <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
+          <Box sx={{ maxWidth: isMobile ? '100%' : '400px' }}>
+            <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', textAlign: 'left' }}>
               Al Sur
             </Typography>
             <Typography variant="body1" sx={{ textAlign: 'justify', color: '#333' }}>
-              Hornopirén 20 min<br />
-              Cerro la Silla en el sector de Hualaihué Estero, 3 km, 5 min<br />
-              Alerce más antiguo del mundo 20 min<br />
-              Cascadas de Río Negro 25 min<br />
-              Caleta e Isla el Manzano 30 min<br />
-              Parque Nacional Hornopirén 20 min<br />
-              Termas de Llancahué, 40 min<br />
-              Termas de Pichicolo, 25 min<br />
-              Termas de Cahuelmo, 2 hr.
+              El Amarillo 12 km<br />
+              Termas El Amarillo 12 km<br />
+              Parque Nacional Pumalín 12 km<br />
+              Río Yelcho<br />
+              Lago Yelcho 46 km<br />
+              Parque Nacional Corcovado<br />
+              Villa Santa Lucía<br />
             </Typography>
           </Box>
         </Grid>
